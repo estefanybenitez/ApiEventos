@@ -6,6 +6,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AsistentesController;
 use App\Http\Controllers\CategoriaEventosController;
+use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\ListaEventosController;
 use App\Models\Asistentes;
@@ -62,4 +63,11 @@ Route::put('/eventos/update/{id}', [EventosController::class, 'updateEventos']);
 Route::get('/eventos/find/{id}', [EventosController::class, 'findEventos']);
 Route::get('/eventLista/find/{id}', [EventosController::class, 'findLista']);
 Route::delete('/eventos/delete/{id}', [EventosController::class, 'deleteEventos']);
+
+//Comentarios
+Route::get('/comentarios/select', [ComentariosController::class, 'selectComentarios']);
+Route::post('/comentarios/store', [ComentariosController::class, 'storeComentarios']);
+Route::put('/comentarios/update/{id}', [ComentariosController::class, 'updateComentarios']);
+Route::get('/comentarios/find/{id}', [ComentariosController::class, 'findComentarios']);
+Route::delete('/comentarios/delete/{id}', [ComentariosController::class, 'deleteComentarios']);
 
