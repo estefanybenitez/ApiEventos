@@ -192,7 +192,7 @@ class EventosController extends Controller
 
                 return response()->json([
                     'code' => 200,
-                    'data' => $datos
+                    'data' => $datos[0]
                     ], 200);
             }else{
                 return response()->json([
