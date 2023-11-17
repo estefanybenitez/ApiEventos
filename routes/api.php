@@ -61,7 +61,9 @@ Route::get('/eventos/select', [EventosController::class, 'selectEventos']);
 Route::post('/eventos/store', [EventosController::class, 'storeEventos']);
 Route::put('/eventos/update/{id}', [EventosController::class, 'updateEventos']);
 Route::get('/eventos/find/{id}', [EventosController::class, 'findEventos']);
+// Para ver eventos del lado del Asistente
 Route::get('/eventosasistente/find/{id}', [EventosController::class, 'findEventosAsistentes']);
+// Ver lista de asistes
 Route::get('/eventLista/find/{id}', [EventosController::class, 'findLista']);
 Route::delete('/eventos/delete/{id}', [EventosController::class, 'deleteEventos']);
 
