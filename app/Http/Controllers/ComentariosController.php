@@ -18,6 +18,7 @@ class ComentariosController extends Controller
                 'comentarios.id_asistente',
                 'asistentes.nombre as nameasistente',
                 'asistentes.correo as emailasistente',
+                'asistentes.username',
                 'comentarios.id_evento',
                 'eventos.titulo as titulo',
             )->join('asistentes', 'comentarios.id_asistente', '=', 'asistentes.id')
@@ -129,6 +130,7 @@ class ComentariosController extends Controller
                     'comentarios.id_asistente',
                     'asistentes.nombre as nameasistente',
                     'asistentes.correo as emailasistente',
+                    'asistentes.username',
                     'comentarios.id_evento',
                     'eventos.titulo as titulo',
                 )->join('asistentes', 'comentarios.id_asistente', '=', 'asistentes.id')
