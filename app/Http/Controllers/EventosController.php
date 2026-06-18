@@ -135,10 +135,12 @@ class EventosController extends Controller
     public function findLista($id){
 
         try{
+                
                 $datos = Asistentes::select(
                     'asistentes.id',
                     'asistentes.nombre',
                     'asistentes.apellido',
+                    'asistentes.fk_evento',
                     'eventos.titulo as titulo_evento'
                 )->join('eventos', 'asistentes.fk_evento', '=', 'eventos.id')
                 ->where('eventos.id', '=', $id)
