@@ -14,6 +14,7 @@ class Asistentes extends Model
         'nombre',
         'apellido',
         'correo',
+        'username',
         'fk_evento',
     ];
     

@@ -16,6 +16,7 @@ class AsistentesController extends Controller
                 'asistentes.nombre',
                 'asistentes.apellido',
                 'asistentes.correo',
+                'asistentes.username',
                 'asistentes.fk_evento',
                 'eventos.titulo as titulo_evento'
             )->join('eventos', 'asistentes.fk_evento', '=', 'eventos.id')
@@ -51,6 +52,7 @@ class AsistentesController extends Controller
                 'nombre' => 'required',
                 'apellido' => 'required',
                 'correo' => 'required',
+                'username' => 'required',
                 'fk_evento' => 'required',
             ]);
 
@@ -82,6 +84,7 @@ class AsistentesController extends Controller
                 'nombre' => 'required',
                 'apellido' => 'required',
                 'correo' => 'required',
+                'username' => 'required',
                 'fk_evento' => 'required',
             ]);
     
@@ -128,6 +131,7 @@ class AsistentesController extends Controller
                         'asistentes.nombre',
                         'asistentes.apellido',
                         'asistentes.correo',
+                        'asistentes.username',
                         'asistentes.fk_evento',
                         'eventos.titulo as titulo_evento'
                     )->join('eventos', 'asistentes.fk_evento', '=', 'eventos.id')

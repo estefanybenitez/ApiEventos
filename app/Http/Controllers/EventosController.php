@@ -146,10 +146,6 @@ class EventosController extends Controller
                 ->where('eventos.id', '=', $id)
                 ->get();
 
-                return response()->json([
-                    'code' => 200,
-                    'data' => $datos[0]
-                    ], 200);
          
         }
         catch (\Throwable $th) {
@@ -159,6 +155,46 @@ class EventosController extends Controller
         }
         
     }
+    // para mostrar los eventos del lado del asistente
+    public function findEventosAsistentes($id){
+
+        try{
+            $evento = Eventos::find($id);
+            if($evento){
+                $datos = Eventos::select(
+                    'eventos.id',
+                    'eventos.titulo', 
+                    'eventos.descripcion',
+                    'eventos.fecha',
+                    'eventos.hora',
+                    'eventos.ubicacion',
+                    'eventos.imagen',
+                    'eventos.fk_categoria',
+                    'categoria.nombre_categoria as categoria'
+                )->join('categoria',
+                'eventos.fk_categoria', '=' , 'categoria.id')
+                ->where('eventos.id', '=', $id)
+                ->get();
+
+                return response()->json([
+                    'code' => 200,
+                    'data' => $datos
+                    ], 200);
+            }else{
+                return response()->json([
+                    'code'=>404,
+                    'data'=> 'Registro no encontrado '
+                ], 404);
+            }
+        }
+        catch (\Throwable $th) {
+            //throw $th;
+            return response()->json
+            ($th->getMessage(), 500);
+        }
+        
+    }
+    // para mostrar los eventos del lado del organizador
     public function findEventos($id){
 
         try{
@@ -197,6 +233,9 @@ class EventosController extends Controller
         }
         
     }
+
+
+
     public function deleteEventos($id){
         try{
             $evento = Eventos::find($id);
