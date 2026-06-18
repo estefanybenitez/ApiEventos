@@ -135,31 +135,16 @@ class EventosController extends Controller
     public function findLista($id){
 
         try{
-                $evento = Eventos::find($id);
-                if ($evento) {
-
-                    $datos = Asistentes::select(
-                        'asistentes.id',
-                        'asistentes.nombre',
-                        'asistentes.apellido',
-                        'asistentes.fk_evento',
-                        )
-                        ->join('eventos', 'asistentes.fk_evento', '=', 'eventos.id')
-                        ->where('eventos.id', '=', $id)
-                        ->get();
-                        return response()->json([
-                            'code' => 200,
-                            'data' => $datos
-                            ], 200);
-                    }
-                            
                 
-                else{
-                    return response()->json([
-                        'code'=>404,
-                        'data'=> 'Registro no encontrado '
-                    ], 404);
-                }
+                $datos = Asistentes::select(
+                    'asistentes.id',
+                    'asistentes.nombre',
+                    'asistentes.apellido',
+                    'asistentes.fk_evento',
+                    'eventos.titulo as titulo_evento'
+                )->join('eventos', 'asistentes.fk_evento', '=', 'eventos.id')
+                ->where('eventos.id', '=', $id)
+                ->get();
 
          
         }

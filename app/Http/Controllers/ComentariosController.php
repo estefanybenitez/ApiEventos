@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Eventos;
 use App\Models\Comentarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +17,6 @@ class ComentariosController extends Controller
                 'comentarios.id_asistente',
                 'asistentes.nombre as nameasistente',
                 'asistentes.correo as emailasistente',
-                'asistentes.username',
                 'comentarios.id_evento',
                 'eventos.titulo as titulo',
             )->join('asistentes', 'comentarios.id_asistente', '=', 'asistentes.id')
@@ -122,27 +120,27 @@ class ComentariosController extends Controller
 
     public function findComentarios($id ){
         try{
-            $evento = Eventos::find($id);
-            if ($evento) {
-                $datos = Comentarios::select(
-                    'comentarios.id',
-                    'comentarios.comentario',
-                    'comentarios.id_asistente',
-                    'asistentes.nombre as nameasistente',
-                    'asistentes.correo as emailasistente',
-                    'asistentes.username',
-                    'comentarios.id_evento',
-                    'eventos.titulo as titulo',
-                )->join('asistentes', 'comentarios.id_asistente', '=', 'asistentes.id')
-                ->join('eventos', 'comentarios.id_evento', '=', 'eventos.id')
-                ->where('eventos.id', '=', $id)
-                ->get();
 
-                return response()->json([
-                'code' =>200,
-                'data'=> $datos
-            ], 200);
-                
+            $comentario = Comentarios::find($id);
+                if ($comentario) {
+                    $datos = Comentarios::select(
+                        'comentarios.id',
+                        'comentarios.comentario',
+                        'comentarios.id_asistente',
+                        'asistentes.nombre as nameasistente',
+                        'asistentes.correo as emailasistente',
+                        'comentarios.id_evento',
+                        'eventos.titulo as titulo',
+                    )->join('asistentes', 'comentarios.id_asistente', '=', 'asistentes.id')
+                    ->join('eventos', 'comentarios.id_evento', '=', 'eventos.id')
+                    ->where('comentarios.id', '=', $id)
+                    ->get();
+
+                    return response()->json([
+                    'code' =>200,
+                    'data'=> $datos[0]
+                ], 200);
+    
             }
             else{
                     //se retorna la respuesta
